@@ -36,7 +36,7 @@
           <p>${{Product.deliveryFee}}</p>
           <p>${{Product.discount}}</p>
           <p>${{Product.vat}}</p>
-          <p style="font-weight: bold;font-size: 22px;color: purple">${{Product.totalPayment}}</p>
+          <p style="font-weight: bold;font-size: 22px;color: purple">${{this.totalPayment}}</p>
         </div>
         <button  class="receiptBtn">View E-Receipt</button>
         <button @click="hideProduct(Product.btnId)"  :id="Product.btnId" class="productMainBtn">
@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import product from "@/components/Product.vue";
 
 export default {
   name: "Product-shop",
@@ -66,9 +65,11 @@ export default {
       const btn = document.getElementById(id);
       targetDiv.style.display = "none";
       btn.style.display = "block"
-    },
-    product() {
-      return product
+    }
+  },
+  computed:{
+    totalPayment(){
+      return this.Product.subtotal + this.Product.deliveryFee - this.Product.discount + this.Product.vat
     }
   },
   props: {
