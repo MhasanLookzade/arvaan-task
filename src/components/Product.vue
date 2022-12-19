@@ -112,6 +112,7 @@ export default {
 .product{
   //background-color: #bbbbbb;
   //border-radius: 15px;
+  margin-top: 20px;
   .productHeader{
     .productDetails{
       display: flex;
