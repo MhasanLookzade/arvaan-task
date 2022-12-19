@@ -38,17 +38,21 @@
 
       <section id="content2">
       <product
-          :product-delivery-fee="22"
-          :product-discount="2"
-          :product-location="'marzdaran'"
-          :product-subtotal="3"
-          :product-total-payment="16"
-          :product-vat="1"
-          :product-date="'22 azar \ sadad '"
-          :product-price="4.44"
-          :product-name="'KIWI'"
-          :product-weight="1"
-          :product-image="'https://img.freepik.com/premium-photo/kiwi-fruit-with-cut-half-isolated-white-background_252965-1141.jpg?w=2000'"
+          v-for="(prod , index) in product"
+          :key="index"
+          :product-id="prod.id"
+          :product-btn-id="prod.btnId"
+          :product-delivery-fee="prod.deliveryFee"
+          :product-discount="prod.discount"
+          :product-location="prod.location"
+          :product-subtotal="prod.subtotal"
+          :product-total-payment="prod.totalPayment"
+          :product-vat="prod.vat"
+          :product-date="prod.date"
+          :product-price="prod.price"
+          :product-name="prod.name"
+          :product-weight="prod.weight"
+          :product-image="prod.image"
         />
       </section>
 
@@ -91,6 +95,42 @@
 import product from "@/components/Product.vue";
 export default {
   name: 'cardPanel',
+  data(){
+    return{
+      product:[
+        {
+          btnId:1,
+          id:'bana',
+          image:'https://img.freepik.com/premium-photo/kiwi-fruit-with-cut-half-isolated-white-background_252965-1141.jpg?w=2000',
+          name:'banana',
+          weight:2,
+          price:4,
+          date:'salam',
+          location:'salam',
+          subtotal:4,
+          deliveryFee:55,
+          discount:33,
+          vat:5.5,
+          totalPayment:77,
+        },
+        {
+          btnId:2,
+          id:'Kiwi',
+          image:'https://img.freepik.com/premium-photo/kiwi-fruit-with-cut-half-isolated-white-background_252965-1141.jpg?w=2000',
+          name:'KIwI',
+          weight:2,
+          price:4,
+          date:'salam',
+          location:'salam',
+          subtotal:4,
+          deliveryFee:55,
+          discount:33,
+          vat:5.5,
+          totalPayment:55,
+        }
+      ]
+    }
+  },
   components:{
     product,
   }

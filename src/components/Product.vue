@@ -15,10 +15,10 @@
       </div>
     </div>
     <div class="productBody">
-      <button @click="showProduct"  id="toggle" class="productMainBtn">
+      <button @click="showProduct(Product.btnId)"  :id="Product.btnId" class="productMainBtn">
         <b-icon icon="chevron-compact-down" aria-hidden="true"></b-icon>
       </button>
-      <div id="productDetails" class="details row">
+      <div :id="Product.id"  class="details row">
         <div class="line"></div>
         <div class="static col">
           <p>Date & Time</p>
@@ -39,7 +39,7 @@
           <p style="font-weight: bold;font-size: 22px;color: purple">${{Product.totalPayment}}</p>
         </div>
         <button  class="receiptBtn">View E-Receipt</button>
-        <button @click="hideProduct"  id="toggle" class="productMainBtn">
+        <button @click="hideProduct(Product.btnId)"  :id="Product.btnId" class="productMainBtn">
           <b-icon icon="chevron-compact-up" aria-hidden="true"></b-icon>
         </button>
       </div>
@@ -55,15 +55,15 @@ import product from "@/components/Product.vue";
 export default {
   name: "Product-shop",
   methods: {
-    showProduct() {
-      const targetDiv = document.getElementById("productDetails");
-      const btn = document.getElementById("toggle");
+    showProduct(id) {
+      const targetDiv = document.getElementById(this.Product.id);
+      const btn = document.getElementById(id);
       targetDiv.style.display = "flex";
       btn.style.display = "none"
     },
-    hideProduct() {
-      const targetDiv = document.getElementById("productDetails");
-      const btn = document.getElementById("toggle");
+    hideProduct(id) {
+      const targetDiv = document.getElementById(this.Product.id);
+      const btn = document.getElementById(id);
       targetDiv.style.display = "none";
       btn.style.display = "block"
     },
@@ -72,6 +72,8 @@ export default {
     }
   },
   props: {
+    ProductBtnId:Number,
+    ProductId:String,
     ProductImage: String,
     ProductName: String,
     ProductPrice: Number,
@@ -87,6 +89,8 @@ export default {
   data() {
     return {
       Product:{
+        btnId:this.ProductBtnId,
+        id:this.ProductId,
         image:this.ProductImage,
         name:this.ProductName,
         weight: this.ProductWeight,
